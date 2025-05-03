@@ -1,33 +1,21 @@
 class Solution {
-private:
-    bool valid(int a, vector<int>& tops, vector<int>& bottoms) {
-        for (int i = 0; i < tops.size(); i++) {
-            if (a != tops[i] && a != bottoms[i])
-                return false;
-        }
-        return true;
-    }
-
-    int min_shuffle(int a, vector<int>& tops, vector<int>& bottoms) {
-        int nt = 0, nb = 0;
-        for (int i = 0; i < tops.size(); i++) {
-            if (a != tops[i])
-                nt++;
-            if (a != bottoms[i])
-                nb++;
-        }
-        return min(nt, nb);
-    }
-
 public:
     int minDominoRotations(vector<int>& tops, vector<int>& bottoms) {
-        int a = tops[0], b = bottoms[0], ans = INT_MAX;
-        if (valid(a, tops, bottoms)) {
-            ans = min_shuffle(a, tops, bottoms);
-        }
-        if (a != b && valid(b, tops, bottoms)) {
-            ans = min(ans, min_shuffle(b, tops, bottoms));
-        }
-        return ans == INT_MAX ? -1 : ans;
+        int size = tops.size();
+
+        auto countMinRotations = [&](int x) {
+            int topCount = 0, bottomCount = 0;
+            for (int i = 0; i < size; ++i) {
+                if (tops[i] != x && bottoms[i] != x) {
+                    return size + 1;
+                }
+                topCount += tops[i] == x;
+                bottomCount += bottoms[i] == x;
+            }
+            return size - max(topCount, bottomCount);
+        };
+        int minRotations = min(countMinRotations(tops[0]), countMinRotations(bottoms[0]));
+
+        return minRotations > size ? -1 : minRotations;
     }
 };
