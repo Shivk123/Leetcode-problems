@@ -6,10 +6,6 @@ public:
     MyQueue() {}
 
     void push(int x) {
-        if (s1.empty()) {
-            s1.push(x);
-            return;
-        }
         while (!s1.empty()) {
             s2.push(s1.top());
             s1.pop();
