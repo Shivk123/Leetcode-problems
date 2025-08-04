@@ -13,7 +13,7 @@ public:
             else
                 leftsmall[i] = st.top() + 1;
             st.push(i);
-        }
+        }//pse
         while (!st.empty())
             st.pop();
 
@@ -27,7 +27,7 @@ public:
                 rightsmall[i] = st.top() - 1;
 
             st.push(i);
-        }
+        }//nse
         int maxA = 0;
         for (int i = 0; i < n; i++) {
             maxA = max(maxA, heights[i] * (rightsmall[i] - leftsmall[i] + 1));
