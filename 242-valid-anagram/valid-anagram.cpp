@@ -1,15 +1,15 @@
 class Solution {
 public:
     bool isAnagram(string s, string t) {
-        int count[26];
-        for(char c: s){
-            count[c-'a']++;
+        int c[26];
+        for(char a: s){
+            c[a-'a']++;
         }
-        for(char c: t){
-            count[c-'a']--;
+        for(char a: t){
+            c[a-'a']--;
         }
         for(int i=0;i<26;i++){
-            if(count[i]!=0)return false;
+            if(c[i]!=0)return false;
         }
         return true;
     }
