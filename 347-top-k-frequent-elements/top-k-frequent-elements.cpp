@@ -6,22 +6,17 @@ public:
             freq[num]++;
         }
 
-        priority_queue<pair<int, int>, vector<pair<int, int>>,
-                       greater<pair<int, int>>>
-            minHeap;
+        vector<int> res;
+        for (auto& it : freq) {
+            res.push_back(it.first);
+        }
 
-        for (auto& [num, count] : freq) {
-            minHeap.push({count, num});
-            if (minHeap.size() > k) {
-                minHeap.pop();
-            }
-        }
-        vector<int> result;
-        while (!minHeap.empty()) {
-            result.push_back(minHeap.top().second);
-            minHeap.pop();
-        }
-        reverse(result.begin(), result.end());
-        return result;
+        // Sort by frequency (descending)
+        sort(res.begin(), res.end(), [&](int a, int b) {
+            return freq[a] > freq[b];
+        });
+
+        // Return top k elements
+        return vector<int>(res.begin(), res.begin() + k);
     }
 };
