@@ -1,13 +1,11 @@
 class Solution {
 public:
     int removeDuplicates(vector<int>& nums) {
-        int j=0;
-        for(int i=1;i<nums.size();i++){
-            if(nums[j]!=nums[i]){
-                j++;
-                nums[j]=nums[i];
-            }
+        set<int> bag;
+        for(int i=0;i<nums.size();i++){
+            bag.insert(nums[i]);
         }
-        return ++j;
+        nums.assign(bag.begin(),bag.end());
+        return bag.size();
     }
 };
