@@ -1,10 +1,14 @@
 class Solution {
 public:
     int missingNumber(vector<int>& nums) {
-        int ans = 0;
-        for (int i = 0; i < nums.size(); i++) {
-            ans ^= (i + 1) ^ nums[i];
+        int n=nums.size();
+        set<int> bag;
+        for(int i:nums){
+            bag.insert(i);
         }
-        return ans;
+        for(int i=0;i<=n;i++){
+            if(!bag.contains(i))return i;
+        }
+        return -1;
     }
 };
