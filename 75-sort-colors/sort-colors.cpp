@@ -1,17 +1,19 @@
 class Solution {
 public:
     void sortColors(vector<int>& nums) {
-        int arr[3];
-        // count each color
-        for(int it: nums){
-            arr[it]++;
-        }
-        // modify array
-        int j=0;
-        for(int i=0;i<3;i++){
-            while(arr[i]--){
-                nums[j]=i;
+        // 3 var i j k
+        int i = 0, j = 0, k = nums.size() - 1;
+        while (j <= k) {
+            // 0
+            if (nums[j] == 0) {
+                swap(nums[i], nums[j]);
+                i++;
                 j++;
+            } else if (nums[j] == 1) { // 1
+                j++;
+            } else { // 2
+                swap(nums[k], nums[j]);
+                k--;
             }
         }
     }
