@@ -1,16 +1,18 @@
 class Solution {
 public:
     vector<int> rearrangeArray(vector<int>& nums) {
-        vector<int> even, odd;
-        for (int it : nums) {
-            if (it > 0)
-                even.push_back(it);
-            else
-                odd.push_back(it);
+        int n = nums.size(),i=0,j=1;
+        vector<int> ans(n);
+        for(int k=0;k<n;k++){
+            if(nums[k]>0){
+                ans[i]=nums[k];
+                i+=2;
+            }
+            else{
+                ans[j]=nums[k];
+                j+=2;
+            }
         }
-        for (int i = 0; i < nums.size(); i++) {
-            nums[i] = (i % 2 == 0) ? even[i / 2] : odd[i / 2];
-        }
-        return nums;
+        return ans;
     }
 };
