@@ -4,7 +4,11 @@ public:
         int low = 0, high = nums.size() - 1, ans=nums[0];
         while (low <= high) {
             int mid = low + (high - low) / 2;
-            if (nums[low] <= nums[mid]) {
+            if(nums[low] < nums[high]){
+                if(nums[low]<ans)ans=nums[low];
+                break;
+            }
+            else if (nums[low] <= nums[mid]) {
                 if(nums[low]<ans)ans=nums[low];
                 low=mid+1;
             } else {
