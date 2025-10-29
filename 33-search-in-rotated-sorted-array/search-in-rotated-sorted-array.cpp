@@ -6,17 +6,17 @@ public:
             int mid = low + (high - low) / 2;
             if (nums[mid] == target) {
                 return mid;
-            } else if (nums[low] <= nums[mid]) {
-                if (nums[low] <= target && target <= nums[mid]) {
-                    high = mid - 1;
+            } else if (nums[low] <= nums[mid]) { //LSS is sorted
+                if (nums[low] <= target && target <= nums[mid]) { //if target is in LSS
+                    high = mid - 1;// Select LSS
                 } else {
-                    low = mid + 1;
+                    low = mid + 1;// Select RSS
                 }
-            } else {
-                if (nums[mid] <= target && target <= nums[high]) {
-                    low = mid + 1;
+            } else { // RSS is sorted
+                if (nums[mid] <= target && target <= nums[high]) { //if target is in RSS
+                    low = mid + 1; // Select RSS
                 } else {
-                    high = mid - 1;
+                    high = mid - 1;// Select LSS
                 }
             }
         }
