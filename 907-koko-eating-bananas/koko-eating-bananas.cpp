@@ -8,8 +8,7 @@ class Solution {
     }
 public:
     int minEatingSpeed(vector<int>& piles, int h) {
-        sort(piles.begin(),piles.end());
-        int low=1,high=piles[piles.size()-1],ans=high;
+        int low=1,high=*max_element(piles.begin(), piles.end()),ans=high;
         while(low<=high){
             int mid=low+(high-low)/2;
             if(can_eat(piles,mid,h)){
